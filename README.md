@@ -11,12 +11,15 @@ This app uses an API call to [Board Game Atlas](https://www.boardgameatlas.com/a
 - analyzing documentation from new API service
 - front end design
 
+#Technology Used
+
+- Ruby on Rails (Ruby: 2.6.1; Rails: 5.2.3)
+- PostgreSQL
+
 #Additional Features Planned
+- [ ] Intergrate barcode scanner to make API call and retieve data
+- [ ] Allow for multiple users
+- [ ] Create a "Meet-up" feature to connect users in the same city who wish to play
+- [ ] Connect to Amazon Affiliates to facilitate purchse of board games
+- [ ] Connect to 3D Model website to offer my service to print board-game related objects
 
-* Intergrate barcode scanner to make API call and retieve data
-* Allow for multiple users
-* Create a "Meet-up" feature to connect users in the same city who wish to play
-* Connect to Amazon Affiliates to facilitate purchse of board games
-* Connect to 3D Model website to offer my service to print board-game related objects
-
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
