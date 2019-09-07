@@ -10,9 +10,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2019_09_07_163857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "boardgames", force: :cascade do |t|
+    t.string "name"
+    t.integer "year_published"
+    t.integer "min_players"
+    t.integer "max_players"
+    t.integer "min_playtime"
+    t.integer "max_playtime"
+    t.integer "min_age"
+    t.text "description"
+    t.string "desc_short"
+    t.string "img_url"
+    t.string "thumb_url"
+    t.string "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "boardgamescategories", force: :cascade do |t|
+    t.bigint "boardgame_id"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["boardgame_id"], name: "index_boardgamescategories_on_boardgame_id"
+    t.index ["category_id"], name: "index_boardgamescategories_on_category_id"
+  end
+
+  create_table "boardgamesmechanics", force: :cascade do |t|
+    t.bigint "boardgame_id"
+    t.bigint "mechanic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["boardgame_id"], name: "index_boardgamesmechanics_on_boardgame_id"
+    t.index ["mechanic_id"], name: "index_boardgamesmechanics_on_mechanic_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "bga_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "mechanics", force: :cascade do |t|
+    t.string "name"
+    t.string "bga_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "boardgamescategories", "boardgames"
+  add_foreign_key "boardgamescategories", "categories"
+  add_foreign_key "boardgamesmechanics", "boardgames"
+  add_foreign_key "boardgamesmechanics", "mechanics"
 end
