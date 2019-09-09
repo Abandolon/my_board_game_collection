@@ -9,6 +9,8 @@ class BoardgamesController < ApplicationController
 
   def show
     @categories = Boardgamescategory.where(boardgame: @boardgame)
+    @mechanics = Boardgamesmechanic.where(boardgame: @boardgame)
+
   end
 
   def new
@@ -37,7 +39,7 @@ class BoardgamesController < ApplicationController
     )
     create_mechanics(@boardgame) unless @first_boardgame["mechanics"].blank?
     create_categories(@boardgame) unless @first_boardgame["categories"].blank?
-    redirect_to boardgames_path
+    redirect_to root_path
   end
 
   def update
@@ -48,6 +50,7 @@ class BoardgamesController < ApplicationController
 
   def destroy
     @boardgame.destroy
+    redirect_to root_path
   end
 
 

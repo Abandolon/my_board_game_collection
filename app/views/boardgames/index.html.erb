@@ -1,13 +1,21 @@
-<h1>My List of Boardgames</h1>
+<div class="container text-center">
 
-<p>Add Your Boardgame</p>
-<%= simple_form_for(@boardgame) do |f| %>
-    <%= f.input :name %>
-    <%= f.submit %>
-<% end %>
+  <p>Search For Your Boardgames</p>
+  <div class= "form">
+    <%= simple_form_for(@boardgame) do |f| %>
+        <%= f.input :name %>
+        <%= f.submit %>
+    <% end %>
+  </div>
+  <p>My Current Boardgames: </p>
+    <div class="bg-display row">
+      <% @boardgames.order(:name).each do |bg| %>
+        <div class="bg-show">
+          <%= link_to image_tag(bg.thumb_url, class: "boardgame-thumb"), boardgame_path(bg)  %>
+          <%= link_to bg.name, boardgame_path(bg) %>
+          <%= link_to("Remove", boardgame_path(bg), method: :delete, data: { confirm: "Are You Sure?"})%>
+        </div>
+      <% end %>
 
-<ul>
-  <% @boardgames.each do |bg| %>
-  <li><%= link_to bg.name, boardgame_path(bg) %></li>
-  <% end %>
-</ul>
+    </div>
+</div>
