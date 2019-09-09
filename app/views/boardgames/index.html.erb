@@ -1,5 +1,11 @@
 <h1>My List of Boardgames</h1>
 
+<p>Add Your Boardgame</p>
+<%= simple_form_for(@boardgame) do |f| %>
+    <%= f.input :name %>
+    <%= f.submit %>
+<% end %>
+
 <ul>
   <% @boardgames.each do |bg| %>
   <li><%= link_to bg.name, boardgame_path(bg) %></li>

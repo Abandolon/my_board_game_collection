@@ -28,9 +28,9 @@ Category.destroy_all
 # Create Mechanics
 puts "Creating Mechanics"
 
-@mechanics_master.each do |mechanic|
-  Mechanic.create(name: mechanic[:name], bga_id: mechanic[:id])
-  puts "#{mechanic[:name]} has been created"
+@mechanics_master["mechanics"].each do |mechanic|
+  Mechanic.create(name: mechanic["name"], bga_id: mechanic["id"])
+  puts "#{mechanic["name"]} has been created"
 end
 
 puts "Completed. Successfully created #{Mechanic.count} mechanics"
@@ -39,9 +39,9 @@ puts "Completed. Successfully created #{Mechanic.count} mechanics"
 
 puts "Creating Categories"
 
-@categories_master.each do |category|
-  Category.create(name: category[:name], bga_id: category[:id])
-  puts "#{category[:name]} has been created"
+@categories_master["categories"].each do |category|
+  Category.create(name: category["name"], bga_id: category["id"])
+  puts "#{category["name"]} has been created"
 
 end
 
