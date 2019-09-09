@@ -13,7 +13,8 @@ class BoardgamesController < ApplicationController
   end
 
   def create
-    @boardgame = Boardgame.create(boardgame_params)
+    @boardgame = Boardgame.new
+
   end
 
   def update
