@@ -1,8 +1,49 @@
-<%= @boardgame.name %>
+<div class="container">
+  <%= link_to("Home", root_path) %>
+  <div class="bg-header text-center">
+    <%= @boardgame.name %>
+  </div>
 
-<ul>
-  <p> Categories </p>
-  <% @categories.each do |category| %>
-  <li><%= category.category.name %></li>
-  <% end %>
-</ul>
+  <div class="bg-content">
+    <div class="bg-image text-center">
+      <%= image_tag(@boardgame.img_url) %>
+    </div>
+    <div class="bg-description">
+      <%= @boardgame.description.html_safe %>
+    </div>
+    <div class="bg-details">
+      <div class="bg-gameplay">
+        <p>Game Play Details</p>
+        <ul>
+          <li>Year Published: <%= @boardgame.year_published %></li>
+          <li>Players: Between <%= @boardgame.min_players %> to <%= @boardgame.max_players %></li>
+          <li>Minimum Gameplay: <%= @boardgame.min_playtime %> minutes</li>
+          <% unless @boardgame.min_playtime == @boardgame.max_playtime%>
+            <li>Maximum Gameplay: <%= @boardgame.max_playtime %> minutes</li>
+          <% end %>
+          <li>Minimum Age: <%= @boardgame.min_age %> years old</li>
+        </ul>
+      </div>
+      <% unless @boardgame.mechanics.blank? %>
+        <div class="mechanic-list">
+          <p> Mechanics </p>
+          <ul>
+            <% @mechanics.each do |mechanic| %>
+            <li><%= mechanic.mechanic.name %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <% unless @boardgame.categories.blank? %>
+        <div class="category-list">
+          <p> Categories </p>
+          <ul>
+            <% @categories.each do |category| %>
+            <li><%= category.category.name %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
