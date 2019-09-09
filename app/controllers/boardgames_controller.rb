@@ -1,10 +1,11 @@
-class BoardgameController < ApplicationController
+class BoardgamesController < ApplicationController
   before_action :set_boardgame, only: [:show, :update, :edit, :destroy]
   def index
     @boardgames = Boardgame.all
   end
 
   def show
+    @categories = Boardgamescategory.where(boardgame: @boardgame)
   end
 
   def new
@@ -29,7 +30,7 @@ class BoardgameController < ApplicationController
   private
 
   def set_boardgame
-    @boardgame = Boardgame.find(id)
+    @boardgame = Boardgame.find(params[:id])
   end
 
   def boardgame_params

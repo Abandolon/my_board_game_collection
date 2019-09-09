@@ -1,0 +1,8 @@
+<%= @boardgame.name %>
+
+<ul>
+  <p> Categories </p>
+  <% @categories.each do |category| %>
+  <li><%= category.category.name %></li>
+  <% end %>
+</ul>
