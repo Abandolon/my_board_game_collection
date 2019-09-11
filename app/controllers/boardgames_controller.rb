@@ -10,7 +10,6 @@ class BoardgamesController < ApplicationController
   def show
     @categories = Boardgamescategory.where(boardgame: @boardgame)
     @mechanics = Boardgamesmechanic.where(boardgame: @boardgame)
-
   end
 
   def new

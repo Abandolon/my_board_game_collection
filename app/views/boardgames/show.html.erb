@@ -1,12 +1,7 @@
 <div class="container">
-  <%= link_to("Home", root_path) %>
-  <div class="bg-header text-center">
-    <%= @boardgame.name %>
-  </div>
-
   <div class="bg-content">
-    <div class="bg-image text-center">
-      <%= image_tag(@boardgame.img_url) %>
+    <div class="text-center">
+      <%= image_tag(@boardgame.img_url, class: "bg-image") %>
     </div>
     <div class="bg-description">
       <%= @boardgame.description.html_safe %>
