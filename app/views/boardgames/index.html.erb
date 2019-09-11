@@ -15,7 +15,9 @@
           <div class="bg-show">
             <%= link_to bg.name, boardgame_path(bg) %>
             <%= link_to image_tag(bg.thumb_url, class: "boardgame-thumb"), boardgame_path(bg)  %>
+            <% if bg.usersboardgames.find_by(user: current_user) %>
             <%= link_to('<i class="fal fa-minus-circle"></i>'.html_safe, boardgame_path(bg), method: :delete, data: { confirm: "Are You Sure?"})%>
+            <% end %>
           </div>
         <% end %>
       </div>
