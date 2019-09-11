@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_104402) do
+ActiveRecord::Schema.define(version: 2019_09_11_113956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,8 +76,19 @@ ActiveRecord::Schema.define(version: 2019_09_11_104402) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "usersboardgames", force: :cascade do |t|
+    t.bigint "boardgame_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["boardgame_id"], name: "index_usersboardgames_on_boardgame_id"
+    t.index ["user_id"], name: "index_usersboardgames_on_user_id"
+  end
+
   add_foreign_key "boardgamescategories", "boardgames"
   add_foreign_key "boardgamescategories", "categories"
   add_foreign_key "boardgamesmechanics", "boardgames"
   add_foreign_key "boardgamesmechanics", "mechanics"
+  add_foreign_key "usersboardgames", "boardgames"
+  add_foreign_key "usersboardgames", "users"
 end
