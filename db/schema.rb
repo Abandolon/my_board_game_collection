@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_113956) do
+ActiveRecord::Schema.define(version: 2019_09_12_223601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2019_09_11_113956) do
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "bga_id"
   end
 
   create_table "boardgamescategories", force: :cascade do |t|
@@ -81,6 +82,8 @@ ActiveRecord::Schema.define(version: 2019_09_11_113956) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "favorite", default: false
+    t.integer "play_count"
     t.index ["boardgame_id"], name: "index_usersboardgames_on_boardgame_id"
     t.index ["user_id"], name: "index_usersboardgames_on_user_id"
   end

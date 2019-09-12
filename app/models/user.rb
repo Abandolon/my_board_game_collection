@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   has_many :usersboardgames
   has_many :boardgames, through: :usersboargames
+
+  validates :email, uniqueness: true
 end
