@@ -17,12 +17,9 @@ class BoardgamesController < ApplicationController
   end
 
   def create
-    boardgame_name = params[:boardgame][:name]
-    url = "https://www.boardgameatlas.com/api/search?name=#{boardgame_name}&pretty=true&client_id=p4PR6A8SOV"
-    url_result = open(url).read
-    boardgames_hash = JSON.parse(url_result)
-    @first_boardgame = boardgames_hash["games"].first
-    @boardgame = Boardgame.create(
+    @boardgame_name = params[:boardgame][:name]
+    parse_result(@boardgame_name)
+    @boardgame = Boardgame.new(
       name: @first_boardgame["name"],
       year_published: @first_boardgame["year_published"],
       min_players: @first_boardgame["min_players"],
@@ -34,11 +31,20 @@ class BoardgamesController < ApplicationController
       desc_short: @first_boardgame["description_preview"],
       img_url: @first_boardgame["image_url"],
       thumb_url: @first_boardgame["thumb_url"],
-      url: @first_boardgame["url"]
-    )
+      url: @first_boardgame["url"],
+      bga_id: @first_boardgame["id"]
+      )
     create_mechanics(@boardgame) unless @first_boardgame["mechanics"].blank?
     create_categories(@boardgame) unless @first_boardgame["categories"].blank?
-    redirect_to root_path
+    if current_user.present?
+      create_usersboardgame(@boardgame)
+      @boardgame.save
+      flash[:notice] = "#{@boardgame.name} has been added"
+      redirect_to root_path
+    else
+      flash[:notice] = "Please sign in to save a boardgame"
+      redirect_to new_user_session_path
+    end
   end
 
   def update
@@ -49,6 +55,7 @@ class BoardgamesController < ApplicationController
 
   def destroy
     @boardgame.destroy
+    flash[:alert] = "#{@boardgame.name} has been removed"
     redirect_to root_path
   end
 
@@ -71,6 +78,17 @@ class BoardgamesController < ApplicationController
       category_attr = Category.find_by(bga_id: category["id"])
       Boardgamescategory.create(boardgame: boardgame, category: category_attr)
     end
+  end
+
+  def create_usersboardgame(boardgame)
+    Usersboardgame.create(boardgame: boardgame, user: current_user)
+  end
+
+  def parse_result(boardgame_name)
+    url = "https://www.boardgameatlas.com/api/search?name=#{boardgame_name}&pretty=true&client_id=p4PR6A8SOV"
+    url_result = open(url).read
+    boardgames_hash = JSON.parse(url_result)
+    @first_boardgame = boardgames_hash["games"].first
   end
 
 
