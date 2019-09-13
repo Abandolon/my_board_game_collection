@@ -3,13 +3,15 @@ class BoardgamesController < ApplicationController
   require 'open-uri'
   before_action :set_boardgame, only: [:show, :update, :edit, :destroy]
   def index
-    @boardgames = Boardgame.all
+    @boardgames = Usersboardgame.where(user: current_user)
     @boardgame = Boardgame.new
   end
 
   def show
     @categories = Boardgamescategory.where(boardgame: @boardgame)
     @mechanics = Boardgamesmechanic.where(boardgame: @boardgame)
+    @images = Image.where(boardgame: @boardgame)
+    @videos = Video.where(boardgame: @boardgame)
   end
 
   def new
@@ -36,6 +38,8 @@ class BoardgamesController < ApplicationController
       )
     create_mechanics(@boardgame) unless @first_boardgame["mechanics"].blank?
     create_categories(@boardgame) unless @first_boardgame["categories"].blank?
+    link_video(@boardgame)
+    link_images(@boardgame)
     if current_user.present?
       create_usersboardgame(@boardgame)
       @boardgame.save
@@ -91,7 +95,41 @@ class BoardgamesController < ApplicationController
     @first_boardgame = boardgames_hash["games"].first
   end
 
+  def link_images(boardgame)
+    url = "https://www.boardgameatlas.com/api/game/images?game_id=#{boardgame.bga_id}&pretty=true&limit=20&client_id=p4PR6A8SOV"
+    url_result = open(url).read
+    images_hash = JSON.parse(url_result)
+    images_hash["images"].each do |image|
+      Image.create(
+        url: image["url"],
+        thumb: image["thumb"],
+        small: image["small"],
+        medium: image["medium"],
+        large: image["large"],
+        original: image["original"],
+        bga_id: image["id"],
+        boardgame: boardgame
+        )
+    end
+  end
 
+
+  def link_video(boardgame)
+    url = "https://www.boardgameatlas.com/api/game/videos?game_id=#{boardgame.bga_id}&pretty=true&limit=20&client_id=p4PR6A8SOV"
+    url_result = open(url).read
+    videos_hash = JSON.parse(url_result)
+    videos_hash["videos"].each do |video|
+      Video.create(
+        url: video["url"],
+        title: video["title"],
+        channel_name: video["channel_name"],
+        thumb_url: video["thumb_url"],
+        image_url: video["image_url"],
+        bga_id: video["id"],
+        boardgame: boardgame
+        )
+    end
+  end
   def boardgame_params
     params.require(@boardgame).permit(:name, :year_published, :min_players,
                                       :max_players, :min_playtime, :max_playtime,

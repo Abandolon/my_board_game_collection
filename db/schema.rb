@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_12_223601) do
+ActiveRecord::Schema.define(version: 2019_09_13_213414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "availabilities", force: :cascade do |t|
+    t.date "date"
+    t.time "start_time"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_availabilities_on_user_id"
+  end
 
   create_table "boardgames", force: :cascade do |t|
     t.string "name"
@@ -58,11 +67,44 @@ ActiveRecord::Schema.define(version: 2019_09_12_223601) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "friends", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friends_on_friend_id"
+    t.index ["user_id"], name: "index_friends_on_user_id"
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "url"
+    t.string "thumb"
+    t.string "bga_id"
+    t.string "small"
+    t.string "medium"
+    t.string "large"
+    t.string "original"
+    t.bigint "boardgame_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["boardgame_id"], name: "index_images_on_boardgame_id"
+  end
+
   create_table "mechanics", force: :cascade do |t|
     t.string "name"
     t.string "bga_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.string "username"
+    t.string "image"
+    t.text "bio"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -88,10 +130,28 @@ ActiveRecord::Schema.define(version: 2019_09_12_223601) do
     t.index ["user_id"], name: "index_usersboardgames_on_user_id"
   end
 
+  create_table "videos", force: :cascade do |t|
+    t.string "url"
+    t.string "title"
+    t.string "channel_name"
+    t.string "thumb_url"
+    t.string "image_url"
+    t.string "bga_id"
+    t.bigint "boardgame_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["boardgame_id"], name: "index_videos_on_boardgame_id"
+  end
+
+  add_foreign_key "availabilities", "users"
   add_foreign_key "boardgamescategories", "boardgames"
   add_foreign_key "boardgamescategories", "categories"
   add_foreign_key "boardgamesmechanics", "boardgames"
   add_foreign_key "boardgamesmechanics", "mechanics"
+  add_foreign_key "friends", "users", column: "friend_id"
+  add_foreign_key "images", "boardgames"
+  add_foreign_key "profiles", "users"
   add_foreign_key "usersboardgames", "boardgames"
   add_foreign_key "usersboardgames", "users"
+  add_foreign_key "videos", "boardgames"
 end

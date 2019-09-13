@@ -20,3 +20,4 @@ yarn-error.log
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+.db_schema.xml

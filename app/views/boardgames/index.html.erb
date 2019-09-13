@@ -1,25 +1,12 @@
-<div class="text-center">
-  <div class="hero-banner">
-      <p>Search For Your Boardgames</p>
-      <div class= "form">
-        <%= simple_form_for(@boardgame) do |f| %>
-            <%= f.input :name %>
-            <%= f.submit %>
-        <% end %>
-      </div>
-  </div>
-  <div class="container">
-    <p>My Current Boardgames: </p>
-      <div class="bg-display row">
-        <% @boardgames.order(:name).each do |bg| %>
-          <div class="bg-show">
-            <%= link_to bg.name, boardgame_path(bg) %>
-            <%= link_to image_tag(bg.thumb_url, class: "boardgame-thumb"), boardgame_path(bg)  %>
-            <% if bg.usersboardgames.find_by(user: current_user) %>
-            <%= link_to('<i class="fal fa-minus-circle"></i>'.html_safe, boardgame_path(bg), method: :delete, data: { confirm: "Are You Sure?"})%>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-  </div>
+<div class="container">
+  <p>Your Current Boardgames </p>
+    <div class="bg-display text-center row">
+      <% @boardgames.each do |bg| %>
+        <div class="bg-show">
+          <%= link_to bg.boardgame.name, boardgame_path(bg.boardgame) %>
+          <%= link_to image_tag(bg.boardgame.thumb_url, class: "boardgame-thumb"), boardgame_path(bg.boardgame)  %>
+          <%= link_to('<i class="fal fa-minus-circle"></i>'.html_safe, boardgame_path(bg.boardgame), method: :delete, data: { confirm: "Are You Sure?"})%>
+        </div>
+      <% end %>
+    </div>
 </div>

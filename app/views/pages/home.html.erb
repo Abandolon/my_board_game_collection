@@ -1,2 +1,22 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="text-center">
+  <div class="hero-banner">
+      <p>Add your Boardgames to our Collection</p>
+      <div class= "form">
+        <%= simple_form_for(@boardgame) do |f| %>
+            <%= f.input :name, label: false, placeholder: "Name of Boardgame" %>
+            <%= f.submit %>
+        <% end %>
+      </div>
+  </div>
+  <div class="container">
+    <p>Some of our selection: </p>
+      <div class="bg-display row">
+        <% @boardgames.sample(5).each do |bg| %>
+          <div class="bg-show">
+            <%= link_to bg.name, boardgame_path(bg) %>
+            <%= link_to image_tag(bg.thumb_url, class: "boardgame-thumb"), boardgame_path(bg)  %>
+          </div>
+        <% end %>
+      </div>
+  </div>
+</div>
