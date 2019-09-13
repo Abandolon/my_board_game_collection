@@ -15,6 +15,9 @@ This app uses an API call to [Board Game Atlas](https://www.boardgameatlas.com/a
 
 - Ruby on Rails (Ruby: 2.6.1; Rails: 5.2.3)
 - PostgreSQL
+- Webpacker
+- ERB
+- ES6
 
 # Additional Features Planned
 - [ ] Intergrate barcode scanner to make API call and retieve data
