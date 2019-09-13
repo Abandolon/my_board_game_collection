@@ -4,4 +4,7 @@ class Boardgame < ApplicationRecord
   has_many :categories, through: :boardgamescategories
   has_many :mechanics, through: :boardgamesmechanics
   has_many :usersboardgames, dependent: :destroy
+  has_many :users, through: :usersboardgames
+  has_many :images
+  has_many :videos
 end
