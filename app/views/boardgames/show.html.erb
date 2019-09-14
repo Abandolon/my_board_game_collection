@@ -38,9 +38,16 @@
             <% end %>
           </ul>
         </div>
-        <div class="images">
-          <% @images.each do |image| %>
-          <%= image_tag(image.medium, class: "image-gallery-item") %>
+      <% end %>
+      <div class="images">
+        <% @images.each do |image| %>
+        <%= image_tag(image.medium, class: "image-gallery-item") %>
+        <% end %>
+      </div>
+      <% unless @videos.blank? %>
+        <div class="videos">
+          <% @videos.each do  |video| %>
+          <%= get_video_iframe(video.url) %>
           <% end %>
         </div>
       <% end %>
