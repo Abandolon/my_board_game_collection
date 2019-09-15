@@ -11,7 +11,7 @@ class BoardgamesController < ApplicationController
     @categories = Boardgamescategory.where(boardgame: @boardgame)
     @mechanics = Boardgamesmechanic.where(boardgame: @boardgame)
     @images = Image.where(boardgame: @boardgame)
-    @videos = Video.where(boardgame: @boardgame)
+    @video = Video.where(boardgame: @boardgame).order(:views).first
     @owners = @boardgame.users
 
   end
@@ -130,6 +130,7 @@ class BoardgamesController < ApplicationController
         thumb_url: video["thumb_url"],
         image_url: video["image_url"],
         bga_id: video["id"],
+        views: video["views"],
         boardgame: boardgame
         )
     end
