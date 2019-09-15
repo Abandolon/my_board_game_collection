@@ -17,11 +17,10 @@ module VideosHelper
   end
 
   # Get YouTube video iframe from given URL
-  def get_youtube_iframe url, width, height
+  def get_youtube_iframe url
     youtube_id = find_youtube_id url
 
-    result = %(<iframe title="YouTube video player" width="#{width}"
-                height="#{height}" src="//www.youtube.com/embed/#{ youtube_id }"
+    result = %(<iframe title="YouTube video player" src="//www.youtube.com/embed/#{ youtube_id }"
                 frameborder="0" allowfullscreen></iframe>)
     result.html_safe
   end
@@ -34,9 +33,9 @@ module VideosHelper
   end
 
   # Get Vimeo video iframe from given URL
-  def get_vimeo_iframe url, width, height
+  def get_vimeo_iframe url
     vimeo_id = find_vimeo_id url
-    uri = "https://vimeo.com/api/oembed.json?url=https%3A//vimeo.com/#{ vimeo_id }&width=#{ width }&height=#{ height }"
+    uri = "https://vimeo.com/api/oembed.json?url=https%3A//vimeo.com/#{ vimeo_id }"
     # see -> https://stackoverflow.com/a/4581095/1498118
     response = Net::HTTP.get( URI.parse( uri ))
     json = JSON.parse response
@@ -46,11 +45,11 @@ module VideosHelper
   # Main function
   # Return a video iframe
   # If the url provided is not a valid YouTube or Vimeo url it returns [nil]
-  def get_video_iframe(url, width = "560px", height = "315px")
+  def get_video_iframe(url)
     if find_vimeo_id(url)
-      get_vimeo_iframe(url, width, height)
+      get_vimeo_iframe(url)
     elsif find_youtube_id(url)
-      get_youtube_iframe(url, width, height)
+      get_youtube_iframe(url)
     end
   end
 end

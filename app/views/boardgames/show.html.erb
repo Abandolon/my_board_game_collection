@@ -1,8 +1,9 @@
 <div class="container">
   <div class="bg-content">
-    <div class="text-center">
-      <%= image_tag(@boardgame.img_url, class: "bg-image") %>
+    <div class="bg-header">
+      <%= @boardgame.name %>
     </div>
+      <%= image_tag(@boardgame.img_url, class: "bg-image") %>
     <div class="bg-description">
       <%= @boardgame.description.html_safe %>
     </div>
@@ -40,28 +41,26 @@
         </div>
       <% end %>
     </div>
-    <% unless @videos.blank? %>
+    <% unless @images.blank? %>
       <div class="images">
         <% @images.each do |image| %>
         <%= image_tag(image.medium, class: "image-gallery-item") %>
         <% end %>
       </div>
     <% end %>
-    <% unless @videos.blank? %>
+    <% unless @video.blank? %>
       <div class="videos">
-        <% @videos.each do  |video| %>
-        <%= get_video_iframe(vdideo.url) %>
-        <% end %>
+        <%= get_video_iframe(@video.url) %>
       </div>
     <% end %>
-    <div class="owners">
-      <% @owners.each do |owner| %>
+    <!-- <div class="owners">
+      <#% @owners.each do |owner| %>
         <div class="avatar">
-          <%= owner.profile.image %>
+          <#%= owner.profile.image %>
         </div>
-        <%= owner.profile.username %>
-      <% end %>
-    </div>
+        <#%= owner.profile.username %>
+      <#% end %>
+    </div> -->
     <div class="request">
       <p>Place Holder for Request Form</p>
     </div>
