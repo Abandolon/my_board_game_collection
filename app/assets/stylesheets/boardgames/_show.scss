@@ -1,3 +1,27 @@
+.bg-content {
+
+}
+
 .bg-image {
   height: 40vh;
+}
+
+.bg-description {
+  grid-area: des;
+}
+
+.bg-details {
+  grid-area: det;
+}
+
+.images {
+  grid-area: img;
+}
+
+.videos {
+  grid-area: vid;
+}
+
+.owners {
+  grid-area: own;
 }

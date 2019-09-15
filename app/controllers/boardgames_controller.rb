@@ -12,6 +12,8 @@ class BoardgamesController < ApplicationController
     @mechanics = Boardgamesmechanic.where(boardgame: @boardgame)
     @images = Image.where(boardgame: @boardgame)
     @videos = Video.where(boardgame: @boardgame)
+    @owners = @boardgame.users
+
   end
 
   def new
