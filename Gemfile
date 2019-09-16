@@ -18,6 +18,7 @@ gem 'json'
 gem 'devise'
 gem 'cloudinary', '~> 1.9.1'
 gem 'carrierwave', '~> 1.2'
+gem 'friendly_id', '~> 5.2.4'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
