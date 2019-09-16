@@ -69,7 +69,7 @@ class BoardgamesController < ApplicationController
   private
 
   def set_boardgame
-    @boardgame = Boardgame.find(params[:id])
+    @boardgame = Boardgame.friendly.find(params[:id])
   end
 
   def create_mechanics(boardgame)

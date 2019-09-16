@@ -5,6 +5,10 @@ class ProfilesController < ApplicationController
     @user = params[:user_id]
   end
 
+  def show
+    @user = Profile.friendly.find(params[:id])
+  end
+
   def create
     @user = User.find(params["user_id"])
     @profile = Profile.new(profiles_params)

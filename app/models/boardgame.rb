@@ -1,4 +1,6 @@
 class Boardgame < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
   has_many :boardgamesmechanics, dependent: :destroy
   has_many :boardgamescategories, dependent: :destroy
   has_many :categories, through: :boardgamescategories
