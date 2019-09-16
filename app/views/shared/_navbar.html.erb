@@ -25,6 +25,11 @@
 
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <% if current_user.present? %>
+            <% if current_user.profile.nil? %>
+              <%= link_to "Create Profile", new_user_profile_path(current_user), class: "dropdown-item"%>
+            <% else %>
+              <%= link_to "My Profile", user_profile_path(current_user, current_user.profile.id), class: "dropdown-item"  %>
+            <% end %>
             <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "dropdown-item"%>
           <% else %>
             <%= link_to "Sign In", new_user_session_path, class: "dropdown-item" %>
