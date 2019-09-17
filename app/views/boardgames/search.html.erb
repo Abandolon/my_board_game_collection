@@ -1,0 +1,12 @@
+<div class="container">
+  <p>Boardgame Search Results</p>
+    <div class="bg-display text-center row">
+      <% @games_result.each do |bg| %>
+        <div class="bg-show">
+          <%= bg["name"] %>
+          <%= image_tag(bg["thumb_url"], class: "boardgame-thumb") %>
+          <%= link_to "Add Game", boardgames_path(bg), method: :post %>
+        </div>
+      <% end %>
+    </div>
+</div>

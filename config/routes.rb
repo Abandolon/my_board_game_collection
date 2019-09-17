@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     resources :profiles, only: [:new, :create, :show]
   end
   resources :boardgames, only: [:index, :show, :create, :destroy]
+  post 'boardgames/search', action: :search, controller: 'boardgames'
 end
