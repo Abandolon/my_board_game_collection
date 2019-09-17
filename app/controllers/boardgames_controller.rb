@@ -11,7 +11,9 @@ class BoardgamesController < ApplicationController
     @categories = Boardgamescategory.where(boardgame: @boardgame)
     @mechanics = Boardgamesmechanic.where(boardgame: @boardgame)
     @images = Image.where(boardgame: @boardgame)
-    @videos = Video.where(boardgame: @boardgame)
+    @video = Video.where(boardgame: @boardgame).order(:views).first
+    @owners = @boardgame.users
+
   end
 
   def new
@@ -67,7 +69,7 @@ class BoardgamesController < ApplicationController
   private
 
   def set_boardgame
-    @boardgame = Boardgame.find(params[:id])
+    @boardgame = Boardgame.friendly.find(params[:id])
   end
 
   def create_mechanics(boardgame)
@@ -99,17 +101,19 @@ class BoardgamesController < ApplicationController
     url = "https://www.boardgameatlas.com/api/game/images?game_id=#{boardgame.bga_id}&pretty=true&limit=20&client_id=p4PR6A8SOV"
     url_result = open(url).read
     images_hash = JSON.parse(url_result)
-    images_hash["images"].each do |image|
-      Image.create(
-        url: image["url"],
-        thumb: image["thumb"],
-        small: image["small"],
-        medium: image["medium"],
-        large: image["large"],
-        original: image["original"],
-        bga_id: image["id"],
-        boardgame: boardgame
-        )
+    unless images_hash["images"].blank?
+      images_hash["images"].each do |image|
+        Image.create(
+          url: image["url"],
+          thumb: image["thumb"],
+          small: image["small"],
+          medium: image["medium"],
+          large: image["large"],
+          original: image["original"],
+          bga_id: image["id"],
+          boardgame: boardgame
+          )
+      end
     end
   end
 
@@ -126,6 +130,7 @@ class BoardgamesController < ApplicationController
         thumb_url: video["thumb_url"],
         image_url: video["image_url"],
         bga_id: video["id"],
+        views: video["views"],
         boardgame: boardgame
         )
     end

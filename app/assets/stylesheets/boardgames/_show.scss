@@ -1,3 +1,76 @@
+.bg-content {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(10, 100px);
+  grid-gap: 10px;
+  grid-template-areas:
+    "bim bim hed hed hed hed hed"
+    "bim bim des des des des des"
+    "bim bim des des des des des"
+    "vid vid des des des des des"
+    "vid vid des des des des des"
+    "img img des des des des des"
+    "img img det det det det det"
+    "img img det det det det det"
+    "img img req req req req req"
+    "img img req req req req req";
+}
+
+.bg-header {
+  grid-area: hed;
+  font-size: xx-large;
+  height: 25px;
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+  align-self: center;
+}
+
 .bg-image {
-  height: 40vh;
+  grid-area: bim;
+  width: 100%;
+}
+
+.bg-description {
+  grid-area: des;
+  height: auto;
+}
+
+.bg-details {
+  grid-area: det;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-left: 10px;
+}
+
+.bg-gameplay {
+  grid-column: span 1;
+}
+
+.mechanic-list {
+  grid-column: span 1;
+}
+
+.category-list {
+  grid-column: span 1;
+}
+.images {
+  grid-area: img;
+  display: grid;
+}
+
+.image-gallery-item {
+  width: 100%;
+}
+.videos {
+  grid-area: vid;
+  height: 100%;
+}
+
+.owners {
+  grid-area: own;
+}
+
+.request {
+  grid-area: req;
 }
