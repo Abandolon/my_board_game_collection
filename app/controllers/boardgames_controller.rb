@@ -3,7 +3,7 @@ class BoardgamesController < ApplicationController
   require 'open-uri'
   before_action :set_boardgame, only: [:show, :update, :edit, :destroy]
   def index
-    @boardgames = Usersboardgame.where(user: current_user)
+    @boardgames = Boardgame.all
     @boardgame = Boardgame.new
   end
 

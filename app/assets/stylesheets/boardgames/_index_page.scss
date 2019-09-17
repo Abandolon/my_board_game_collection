@@ -7,17 +7,20 @@
   background-image: linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.6)),
     url(https://images.unsplash.com/photo-1563941402830-3bae42b67b38?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
   height: 75vh;
-  padding: 30vh;
+  padding: 15vh;
   color: white;
   margin-bottom: 10px;
   background-size: cover;
+  text-align: center;
+}
+
+.link {
+  margin: 30px;
 }
 
 .form {
-  text-align: left;
   width: 50vw;
   margin: 0 auto;
-  display: inline-block;
 }
 .bg-display {
   display: flex;
