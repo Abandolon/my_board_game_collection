@@ -7,13 +7,18 @@ class BoardgamesController < ApplicationController
     @boardgame = Boardgame.new
   end
 
+  def search
+    @boardgame_name = params[:boardgame][:name]
+    parse_result(@boardgame_name)
+    @games_result = @boardgames_hash["games"]
+  end
+
   def show
     @categories = Boardgamescategory.where(boardgame: @boardgame)
     @mechanics = Boardgamesmechanic.where(boardgame: @boardgame)
     @images = Image.where(boardgame: @boardgame)
     @video = Video.where(boardgame: @boardgame).order(:views).first
     @owners = @boardgame.users
-
   end
 
   def new
@@ -21,25 +26,22 @@ class BoardgamesController < ApplicationController
   end
 
   def create
-    @boardgame_name = params[:boardgame][:name]
-    parse_result(@boardgame_name)
     @boardgame = Boardgame.new(
-      name: @first_boardgame["name"],
-      year_published: @first_boardgame["year_published"],
-      min_players: @first_boardgame["min_players"],
-      max_players: @first_boardgame["max_players"],
-      min_playtime: @first_boardgame["min_playtime"],
-      max_playtime: @first_boardgame["max_playtime"],
-      min_age: @first_boardgame["min_age"],
-      description: @first_boardgame["description"],
-      desc_short: @first_boardgame["description_preview"],
-      img_url: @first_boardgame["image_url"],
-      thumb_url: @first_boardgame["thumb_url"],
-      url: @first_boardgame["url"],
-      bga_id: @first_boardgame["id"]
+      name: params["name"],
+      year_published: params["year_published"],
+      min_players: params["min_players"],
+      max_players: params["max_players"],
+      min_playtime: params["min_playtime"],
+      max_playtime: params["max_playtime"],
+      min_age: params["min_age"],
+      description: params["description"],
+      img_url: params["image_url"],
+      thumb_url: params["thumb_url"],
+      url: params["url"],
+      bga_id: params["id"]
       )
-    create_mechanics(@boardgame) unless @first_boardgame["mechanics"].blank?
-    create_categories(@boardgame) unless @first_boardgame["categories"].blank?
+    create_mechanics(@boardgame) unless params["mechanics"].blank?
+    create_categories(@boardgame) unless params["categories"].blank?
     link_video(@boardgame)
     link_images(@boardgame)
     if current_user.present?
@@ -73,14 +75,14 @@ class BoardgamesController < ApplicationController
   end
 
   def create_mechanics(boardgame)
-    @first_boardgame["mechanics"].each do |mech|
+    params["mechanics"].each do |mech|
       mech_attr = Mechanic.find_by(bga_id: mech["id"])
       Boardgamesmechanic.create(boardgame: boardgame, mechanic: mech_attr)
     end
   end
 
   def create_categories(boardgame)
-    @first_boardgame["categories"].each do |category|
+    params["categories"].each do |category|
       category_attr = Category.find_by(bga_id: category["id"])
       Boardgamescategory.create(boardgame: boardgame, category: category_attr)
     end
@@ -91,10 +93,9 @@ class BoardgamesController < ApplicationController
   end
 
   def parse_result(boardgame_name)
-    url = "https://www.boardgameatlas.com/api/search?name=#{boardgame_name}&pretty=true&client_id=p4PR6A8SOV"
+    url = "https://www.boardgameatlas.com/api/search?name=#{boardgame_name}&limit=30&pretty=true&client_id=p4PR6A8SOV"
     url_result = open(url).read
-    boardgames_hash = JSON.parse(url_result)
-    @first_boardgame = boardgames_hash["games"].first
+    @boardgames_hash = JSON.parse(url_result)
   end
 
   def link_images(boardgame)
@@ -138,7 +139,7 @@ class BoardgamesController < ApplicationController
   def boardgame_params
     params.require(@boardgame).permit(:name, :year_published, :min_players,
                                       :max_players, :min_playtime, :max_playtime,
-                                      :min_age, :description, :desc_short,
-                                      :img_url, :thumb_url, :url)
+                                      :min_age, :description, :img_url,
+                                      :thumb_url, :url)
   end
 end
