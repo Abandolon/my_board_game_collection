@@ -26,32 +26,44 @@ class BoardgamesController < ApplicationController
   end
 
   def create
-    @boardgame = Boardgame.new(
-      name: params["name"],
-      year_published: params["year_published"],
-      min_players: params["min_players"],
-      max_players: params["max_players"],
-      min_playtime: params["min_playtime"],
-      max_playtime: params["max_playtime"],
-      min_age: params["min_age"],
-      description: params["description"],
-      img_url: params["image_url"],
-      thumb_url: params["thumb_url"],
-      url: params["url"],
-      bga_id: params["id"]
-      )
-    create_mechanics(@boardgame) unless params["mechanics"].blank?
-    create_categories(@boardgame) unless params["categories"].blank?
-    link_video(@boardgame)
-    link_images(@boardgame)
-    if current_user.present?
-      create_usersboardgame(@boardgame)
-      @boardgame.save
-      flash[:notice] = "#{@boardgame.name} has been added"
-      redirect_to root_path
+    if Boardgame.find_by(name: params["name"])
+      @dbgame = Boardgame.find_by(name: params["name"])
+      if current_user.present?
+        create_usersboardgame(@dbgame)
+        flash[:notice] = "#{@dbgame.name} has been added"
+        redirect_to user_profile_path(current_user, current_user.profile)
+      else
+        flash[:notice] = "Please sign in to save a boardgame"
+        redirect_to new_user_session_path
+      end
     else
-      flash[:notice] = "Please sign in to save a boardgame"
-      redirect_to new_user_session_path
+      @boardgame = Boardgame.new(
+        name: params["name"],
+        year_published: params["year_published"],
+        min_players: params["min_players"],
+        max_players: params["max_players"],
+        min_playtime: params["min_playtime"],
+        max_playtime: params["max_playtime"],
+        min_age: params["min_age"],
+        description: params["description"],
+        img_url: params["image_url"],
+        thumb_url: params["thumb_url"],
+        url: params["url"],
+        bga_id: params["id"]
+        )
+      create_mechanics(@boardgame) unless params["mechanics"].blank?
+      create_categories(@boardgame) unless params["categories"].blank?
+      link_video(@boardgame)
+      link_images(@boardgame)
+      if current_user.present?
+        create_usersboardgame(@boardgame)
+        @boardgame.save
+        flash[:notice] = "#{@boardgame.name} has been added"
+        redirect_to user_profile_path(current_user, current_user.profile)
+      else
+        flash[:notice] = "Please sign in to save a boardgame"
+        redirect_to new_user_session_path
+      end
     end
   end
 
@@ -93,13 +105,13 @@ class BoardgamesController < ApplicationController
   end
 
   def parse_result(boardgame_name)
-    url = "https://www.boardgameatlas.com/api/search?name=#{boardgame_name}&limit=30&pretty=true&client_id=p4PR6A8SOV"
+    url = "https://www.boardgameatlas.com/api/search?name=#{boardgame_name}&limit=30&fields=name,year_published,min_players,max_players,min_playtime,max_playtime,min_age,description,image_url,thumb_url,url,mechanics,categories&pretty=true&client_id=p4PR6A8SOV"
     url_result = open(url).read
     @boardgames_hash = JSON.parse(url_result)
   end
 
   def link_images(boardgame)
-    url = "https://www.boardgameatlas.com/api/game/images?game_id=#{boardgame.bga_id}&pretty=true&limit=20&client_id=p4PR6A8SOV"
+    url = %"https://www.boardgameatlas.com/api/game/images?game_id=#{boardgame.bga_id}&pretty=true&limit=20&client_id=p4PR6A8SOV"
     url_result = open(url).read
     images_hash = JSON.parse(url_result)
     unless images_hash["images"].blank?
