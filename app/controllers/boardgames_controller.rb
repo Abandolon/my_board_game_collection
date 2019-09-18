@@ -31,7 +31,7 @@ class BoardgamesController < ApplicationController
       if current_user.present?
         create_usersboardgame(@dbgame)
         flash[:notice] = "#{@dbgame.name} has been added"
-        redirect_to user_profile_path(current_user, current_user.profile)
+        redirect_to profile_path(current_user.profile)
       else
         flash[:notice] = "Please sign in to save a boardgame"
         redirect_to new_user_session_path
@@ -59,7 +59,7 @@ class BoardgamesController < ApplicationController
         create_usersboardgame(@boardgame)
         @boardgame.save
         flash[:notice] = "#{@boardgame.name} has been added"
-        redirect_to user_profile_path(current_user, current_user.profile)
+        redirect_to profile_path(current_user.profile)
       else
         flash[:notice] = "Please sign in to save a boardgame"
         redirect_to new_user_session_path
