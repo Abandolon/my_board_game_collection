@@ -14,7 +14,7 @@
         <%= link_to "Home", root_path, class: "nav-link" %>
       </li>
       <li>
-        <% if current_user.present? %>
+        <% if current_user.profile.present? %>
           <%= link_to "My Games", profile_path(current_user.profile), class: "nav-link" %>
         <% else %>
           <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
@@ -26,9 +26,11 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <% if current_user.present? %>
             <% if current_user.profile.nil? %>
-              <%= link_to "Create Profile", new_user_profile_path(current_user), class: "dropdown-item"%>
+              <%= link_to "Create Profile", new_profile_path(current_user), class: "dropdown-item"%>
             <% else %>
               <%= link_to "My Profile", profile_path(current_user.profile), class: "dropdown-item"  %>
+              <%= link_to "Edit Profile", edit_profile_path(current_user.profile),
+                class: "dropdown-item" %>
             <% end %>
             <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "dropdown-item"%>
           <% else %>
