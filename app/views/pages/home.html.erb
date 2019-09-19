@@ -6,13 +6,7 @@
       <div class="title-tagline">
         <p>TABLETOP GAMES</p>
       </div>
-      <div class= "form text-center">
-        <%= simple_form_for(@boardgame, url: boardgames_search_path) do |f| %>
-        <p>Add your Boardgames to our Collection</p>
-            <%= f.input_field :name, label: false, placeholder: "Name of Boardgame", class: "input-field" %>
-            <%= f.submit "Search", class: "btn btn-primary" %>
-        <% end %>
-      </div>
+      <%= render 'shared/bgsearch' %>
       <div class="link">
         <%= link_to "View All Games", boardgames_path, class: "btn btn-info"  %>
       </div>
