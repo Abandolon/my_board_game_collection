@@ -19,6 +19,7 @@ class BoardgamesController < ApplicationController
     @images = Image.where(boardgame: @boardgame)
     @video = Video.where(boardgame: @boardgame).order(:views).first
     @owners = @boardgame.users
+    @boardgame.increment!(:view)
   end
 
   def new
