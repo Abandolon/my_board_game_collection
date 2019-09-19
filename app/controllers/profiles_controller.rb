@@ -7,7 +7,7 @@ class ProfilesController < ApplicationController
 
   def show
     @profile = Profile.friendly.find(params[:id])
-    @boardgames = Boardgame.where(user: @profile.user)
+    @boardgames = @profile.user.boardgames.order(:name)
     @boardgame = Boardgame.new
   end
 
