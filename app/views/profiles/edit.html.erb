@@ -1,0 +1,17 @@
+<div class="container">
+  <h2>Let's Setup Your Profile</h2>
+  <%= simple_form_for(@profile, method: :patch) do |f| %>
+    <%= f.input :username, label: false, placeholder: "#{@profile.username}" %>
+    <%= f.input :bio, label: false, placeholder: "#{@profile.bio}" %>
+    <%= f.input :city, placeholder: "#{@profile.city}" %>
+    <%= f.input :country, as: :string, placeholder: "#{@profile.country}" %>
+    <div class="profile-image">
+      <%= cl_image_tag(@profile.image, :width=>100, :height=>100, :gavirty=>"faces", :crop=>"fill") %>
+    </div>
+    <%= f.input :image, label: "Upload a new photo" %>
+    <%= f.input :image_cache, as: :hidden %>
+    <%= f.hidden_field :user, value: params[:id] %>
+    <%= f.submit %>
+  <% end %>
+
+</div>

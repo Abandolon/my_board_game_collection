@@ -12,9 +12,8 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @user = User.find(params["user_id"])
     @profile = Profile.new(profiles_params)
-    @profile.user = @user
+    @profile.user = current_user
     if @profile.save
       flash[:notice] = "Your Profile has been updated"
       redirect_to boardgames_path
@@ -23,10 +22,22 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def edit
+    @profile = Profile.friendly.find(params[:id])
+  end
+
+  def update
+    @profile = Profile.friendly.find(params[:id])
+    @profile.update(profiles_params)
+    flash[:notice] = "Your Profile has been updated"
+    redirect_to boardgames_path
+  end
+
   private
 
   def profiles_params
-    params.require(:profile).permit(:username, :image, :image_cache, :bio, :user_id)
+    params.require(:profile).permit(:username, :image, :image_cache, :bio,
+                                    :user_id, :city, :country)
   end
 
 end

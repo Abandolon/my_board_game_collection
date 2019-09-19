@@ -1,13 +1,12 @@
 <div class="container">
   <h2>Let's Setup Your Profile</h2>
-  <%= simple_form_for(@profile, url: user_profiles_path) do |f| %>
+  <%= simple_form_for(@profile, url: profiles_path) do |f| %>
     <%= f.input :username, label: false, placeholder: "Choose your username" %>
     <%= f.input :bio, label: false, placeholder: "What type of gamer are you?" %>
     <%= f.input :city %>
     <%= f.input :country, as: :string %>
     <%= f.input :image, label: "Upload a photo" %>
     <%= f.input :image_cache, as: :hidden %>
-    <%= f.hidden_field :user, value: @user %>
     <%= f.submit %>
   <% end %>
 

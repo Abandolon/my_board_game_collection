@@ -77,7 +77,7 @@ class BoardgamesController < ApplicationController
   def destroy
     @boardgame.destroy
     flash[:alert] = "#{@boardgame.name} has been removed"
-    redirect_to root_path
+    redirect_to profile_path(current_user.profile)
   end
 
 
@@ -106,7 +106,7 @@ class BoardgamesController < ApplicationController
   end
 
   def parse_result(boardgame_name)
-    url = "https://www.boardgameatlas.com/api/search?name=#{boardgame_name}&limit=30&fields=name,year_published,min_players,max_players,min_playtime,max_playtime,min_age,description,image_url,thumb_url,url,mechanics,categories&pretty=true&client_id=p4PR6A8SOV"
+    url = "https://www.boardgameatlas.com/api/search?name=#{boardgame_name}&limit=30&fields=name,year_published,min_players,max_players,min_playtime,max_playtime,min_age,description,image_url,thumb_url,url,id,mechanics,categories&pretty=true&client_id=p4PR6A8SOV"
     url_result = open(url).read
     @boardgames_hash = JSON.parse(url_result)
   end
