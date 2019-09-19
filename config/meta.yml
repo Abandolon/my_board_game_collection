@@ -1,0 +1,4 @@
+meta_product_name: "Let's Play"
+meta_title: "Let's Play Tabletop Games"
+meta_description: "Create a digital boardgame library, share and make new friends"
+meta_image: "letsplayog.png" # should exist in `app/assets/images/`

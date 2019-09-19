@@ -1,3 +1,6 @@
+<% content_for :meta_title, "#{@profile.username}'s collection" %>
+<% content_for :meta_description, "Check out #{@profile.username}'s boardgame collection" %>
+
 <div class="container">
   <% if current_user == @profile.user %>
     <div class= "form text-center">
