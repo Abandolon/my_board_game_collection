@@ -1,9 +1,26 @@
-<h1>
-  All Conversations
-</h1>
+  <header class="text-center pt-1">
+    <h2>Your Current Messages</h2>
+  </header>
 
-<% @conversations.each do |conversation|  %>
-  <div>
-    <%= link_to conversation.subject, conversation_path(conversation) %>
+  <div class="conversations-container">
+    <% @conversations.each do |conversation|  %>
+      <div class="conversation">
+        <div class="align-left">
+          <div class="sender-avatar">
+            <% conversation.participants.each do |participant| %>
+              <% next if participant == current_user %>
+              <%= cl_image_tag(participant.profile.image, class:"avatar-large") %>
+            <% end %>
+          </div>
+          <div class="subject">
+            <%= link_to conversation.subject, conversation_path(conversation) %>
+            <p><%= conversation.messages.last.body %></p>
+          </div>
+        </div>
+        <div class="conversation-updated">
+          <p> Sent: <%= conversation.updated_at.strftime("%H:%M %-d %b") %></p>
+        </div>
+      </div>
+      <hr />
+    <% end %>
   </div>
-  <% end %>

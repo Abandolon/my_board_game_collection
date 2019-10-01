@@ -1,0 +1,17 @@
+.conversations-container {
+  width: 50vw;
+  margin: 1rem auto;
+}
+
+.conversation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.align-left {
+  display: flex;
+  .subject {
+    padding-left: 10px;
+  }
+}
