@@ -7,13 +7,13 @@ Mailboxer.setup do |config|
   config.default_from = "messages@letsplaytabletop.games"
 
   #Configures the methods needed by mailboxer
-  config.email_method = :email
+  config.email_method = :mailboxer_email
   config.name_method = :username
   config.notify_method = :notify
 
-  #Configures Mailboxer to use UserMailer for sending emails
-  config.notification_mailer = UserMailer
-  config.message_mailer = UserMailer
+  # #Configures Mailboxer to use UserMailer for sending emails
+  # config.notification_mailer = UserMailer
+  # config.message_mailer = UserMailer
 
   #Configures if you use or not a search engine and which one you are using
   #Supported engines: [:solr,:sphinx,:pg_search]

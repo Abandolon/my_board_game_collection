@@ -16,11 +16,11 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
 
 
-  def name
-    raise
+  def username
+    self.profile.username
   end
-  def mailboxer_email(object)
-    object.email
-    raise
+
+  def mailboxer_email(message)
+    message.recipients.first.email
   end
 end
