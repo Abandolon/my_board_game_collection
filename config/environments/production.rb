@@ -65,7 +65,9 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.delivery_method = :smtp
+ # Configuration to connect to Postmark-app
+  config.action_mailer.delivery_method     = :postmark
+  config.action_mailer.postmark_settings   = { api_token: ENV['POSTMARK_API'] }
   config.action_mailer.default_url_options = { host: "letsplaytabletop.games" }
 
   # Ignore bad email addresses and do not raise email delivery errors.

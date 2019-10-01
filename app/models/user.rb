@@ -15,6 +15,10 @@ class User < ApplicationRecord
   has_many :availabilities
   validates :email, uniqueness: true
 
+
+  def name
+    raise
+  end
   def mailboxer_email(object)
     object.email
     raise

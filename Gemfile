@@ -20,6 +20,7 @@ gem 'cloudinary', '~> 1.9.1'
 gem 'carrierwave', '~> 1.2'
 gem 'friendly_id', '~> 5.2.4'
 gem 'mailboxer', github: 'mailboxer/mailboxer'
+gem 'postmark-rails'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
@@ -32,4 +33,5 @@ group :development, :test do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'dotenv-rails'
+  gem 'letter_opener'
 end
