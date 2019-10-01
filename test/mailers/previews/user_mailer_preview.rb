@@ -6,9 +6,4 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.welcome
   end
 
-  # Preview this email at http://localhost:3000/rails/mailers/user_mailer/request
-  def request
-    UserMailer.request
-  end
-
 end

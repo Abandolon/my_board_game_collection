@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
+  acts_as_messageable #allows Mailboxer gem to access model
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -11,4 +14,13 @@ class User < ApplicationRecord
   has_many :friends, source: :friends, foreign_key: :user_id
   has_many :availabilities
   validates :email, uniqueness: true
+
+
+  def username
+    self.profile.username
+  end
+
+  def mailboxer_email(message)
+    message.recipients.first.email
+  end
 end
