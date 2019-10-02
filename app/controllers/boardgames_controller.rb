@@ -18,7 +18,12 @@ class BoardgamesController < ApplicationController
     @mechanics = Boardgamesmechanic.where(boardgame: @boardgame)
     @images = Image.where(boardgame: @boardgame)
     @video = Video.where(boardgame: @boardgame).order(:views).first
-    @owners = @boardgame.users
+    @owners = []
+    @boardgame.users.each do |user|
+      if user.profile.present?
+        @owners << user.profile
+      end
+    end
     @boardgame.increment!(:view)
   end
 

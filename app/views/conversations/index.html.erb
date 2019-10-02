@@ -9,7 +9,11 @@
           <div class="sender-avatar">
             <% conversation.participants.each do |participant| %>
               <% next if participant == current_user %>
-              <%= cl_image_tag(participant.profile.image, class:"avatar-large") %>
+              <% if participant.profile.present? && participant.profile.image.present? %>
+                <%= cl_image_tag(participant.profile.image, class:"avatar-large") %>
+              <% else %>
+                <div class="avatar-large"><%= image_tag("logo-1.svg") %></div>
+              <% end %>
             <% end %>
           </div>
           <div class="subject">

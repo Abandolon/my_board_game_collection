@@ -54,7 +54,43 @@
       </div>
     <% end %>
     <div class="request">
-      <p>Place Holder for Request Form</p>
+      <% @owners.each do |owner| %>
+        <div class="text-center">
+          <a href="" class="btn btn-default btn-rounded mb-1" data-toggle="modal" data-target="#modalContactForm<%=owner.id%>"><%= owner.username %></a>
+        </div>
+        <div class="modal fade" id="modalContactForm<%=owner.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Send A Message </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <%= form_tag conversations_path, method: :post do %>
+              <div class="modal-body mx-3">
+                <div class="md-form mb-1">
+                  Send To: <%= text_field_tag :user, owner.username, disabled: true %>
+                  <input type="hidden" id="user" name="user_id" value="<%= owner.user.id %>">
+                </div>
+                <div class="md-form mb-5">
+                  <%= text_field_tag :subject, nil, placeholder: "Subject", class: "form-control validate" %>
+                </div>
+                <div class="md-form">
+                  <%= text_area_tag :body, nil, placeholder: "Let them know when you'd like to play",
+                  class: "md-textarea form-control" %>
+                </div>
+                <input type="hidden" id="user_id" name="user" value="">
+              </div>
+              <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-unique">Send <i class="fas fa-paper-plane ml-1"></i></button>
+              </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
