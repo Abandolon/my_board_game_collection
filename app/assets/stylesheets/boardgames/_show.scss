@@ -4,16 +4,16 @@
   // grid-template-rows: repeat(5, minmax(0, 1fr));
   grid-gap: 10px;
   grid-template-areas:
-    "bim bim hed hed hed hed hed"
+    "aff aff hed hed hed hed hed"
     "bim bim det det det req req"
     "bim bim det det det req req"
+    "bim bim des des des des des"
     "vid vid des des des des des"
     "vid vid des des des des des"
     "img img des des des des des"
     "img img des des des des des"
     "img img des des des des des"
-    "aff aff des des des des des"
-    "aff aff des des des des des";
+    "... ... des des des des des";
 }
 
 .bg-header {
@@ -85,13 +85,25 @@
     border-radius: 5px;
     margin: 3px 5px;
     color: black;
-    :hover {
-      background-color: orange;
     }
-  }
+    a :hover {
+      background-color: $blue;
+      text-decoration: none;
+    }
 }
 
 
 #aff-link {
   grid-area: aff;
+  border: 1px solid $blue;
+  background-color: $yellow;
+  border-radius: 4px;
+  text-align: center;
+  height: 1.5rem;
+  width: 100%;
+  margin: auto;
+  a {
+    color: black;
+    font-weight: bold;
+  }
 }

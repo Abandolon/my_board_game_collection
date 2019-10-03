@@ -4,7 +4,7 @@
       <strong><%= @boardgame.name %></strong>
     </div>
     <div id="aff-link">
-      <a type=amzn search="<%= @boardgame.name %>" category="toys">Click Here to Purchase</a>
+      <a type=amzn search="<%= @boardgame.name %>" category="toys">Buy <%= @boardgame.name %></a>
     </div>
       <%= image_tag(@boardgame.img_url, class: "bg-image") %>
     <div class="bg-description">
@@ -77,8 +77,7 @@
       </div>
     <% end %>
     <div class="request">
-      <p class="text-center">Who Has A Copy?</p>
-
+    <p class="text-center">Who Has A Copy?</p>
         <% @owners.each do |owner| %>
           <a href=""  data-toggle="modal" data-target="#modalContactForm<%=owner.id%>">
             <div class="text-center modal-link"><%= owner.username %></div>
