@@ -11,9 +11,10 @@
 
 .align-left {
   display: flex;
-  .subject {
-    padding-left: 10px;
-  }
+}
+
+.sender-avatar {
+  margin-right: 10px;
 }
 
 .full-width {
@@ -23,4 +24,24 @@
 
 .subject {
   font-weight: bold;
+}
+
+@media (max-width: 991px) {
+
+  .conversations-container {
+    width: 95vw;
+    min-height: 85vh;
+  }
+
+  .text-center h2 {
+    font-size: 30px;
+  }
+
+  .msg-body p {
+    width: 43vw;
+  }
+
+  .conversation-updated {
+    width: 85px;
+  }
 }

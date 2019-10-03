@@ -21,3 +21,34 @@
   padding: 0px 3px;
   height: 2rem;
 }
+
+.hero-banner {
+  background-image: linear-gradient(rgba(0,0,0,.2), rgba(0,0,0,.6)),
+    url(https://res.cloudinary.com/abandolon/image/upload/v1570124042/letsplay-hero.jpg);
+  height: 75vh;
+  padding: 15vh;
+  color: white;
+  margin-bottom: 10px;
+  background-size: cover;
+  text-align: center;
+}
+
+@media (max-width: 991px) {
+
+  .hero-banner {
+    height: 60vh;
+    padding: 2vh;
+  }
+
+  .title-header {
+    font-size: 3rem;
+  }
+
+  .form {
+    width: 91vw;
+  }
+
+  .link {
+    margin: 24px 0;
+  }
+}

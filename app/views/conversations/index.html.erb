@@ -16,9 +16,9 @@
               <% end %>
             <% end %>
           </div>
-          <div>
+          <div class="msg-body">
             <%= link_to conversation.subject, conversation_path(conversation), class:"subject" %>
-            <p><%= conversation.messages.last.body %></p>
+            <p><%= conversation.messages.last.body.truncate(35) %></p>
           </div>
         </div>
         <div class="conversation-updated">

@@ -12,3 +12,42 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 991px) {
+  .navbar-lewagon {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: flex;
+    position: sticky;
+    bottom: 0;
+    background-color: $blue;
+    height: 70px;
+    justify-content: space-evenly;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    width: 100vw;
+  }
+
+  .mobile-link-item {
+    vertical-align: center;
+    text-align: center;
+    padding-top: 5px;
+    img {
+      height: 25px;
+    }
+    i {
+      font-size: 22px;
+      color: $yellow;
+    }
+    p{
+      font-size: 15px;
+      color: $yellow;
+    }
+  }
+}

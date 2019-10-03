@@ -16,7 +16,7 @@
     <meta property="og:site_name" content="<%= meta_title %>" />
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
-    <script src="https://kit.fontawesome.com/7c1cb90b94.js"></script>
+    <script src="https://kit.fontawesome.com/7c1cb90b94.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,700|Permanent+Marker&display=swap" rel="stylesheet">
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
@@ -31,6 +31,7 @@
 
     <%= render 'shared/flashes' %>
     <%= yield %>
+    <%= render 'shared/mobile_navbar' %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
 
