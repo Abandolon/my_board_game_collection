@@ -1,9 +1,9 @@
 <div class="container">
-  <p>All Our Boardgames</p>
+  <p class="text-center bg-header"><strong>All Our Boardgames</strong></p>
     <div class="bg-display text-center row">
       <% @boardgames.each do |bg| %>
         <div class="bg-show">
-          <%= link_to bg.name, boardgame_path(bg) %>
+          <strong><%= link_to bg.name, boardgame_path(bg) %></strong>
           <%= link_to image_tag(bg.thumb_url, class: "boardgame-thumb"), boardgame_path(bg)  %>
         </div>
       <% end %>

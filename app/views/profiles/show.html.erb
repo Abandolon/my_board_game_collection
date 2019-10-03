@@ -4,7 +4,7 @@
 <div class="container">
   <% if current_user == @profile.user %>
     <%= render 'shared/bgsearch' %>
-    <p>Your Current Boardgames </p>
+    <p><strong>Your Current Boardgames</strong></p>
   <% else %>
     <p> <%= @profile.username %>'s collection</p>
   <% end %>
