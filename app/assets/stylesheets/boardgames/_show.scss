@@ -107,3 +107,36 @@
     font-weight: bold;
   }
 }
+
+
+@media (max-width: 991px) {
+
+  .bg-content {
+    grid-template-areas:
+      "hed"
+      "bim"
+      "vid"
+      "vid"
+      "aff"
+      "aff"
+      "req"
+      "des"
+      "det"
+      "img";
+  }
+
+  .bg-details {
+    display: block;
+  }
+
+  #aff-link {
+    height: 100%;
+  }
+
+  .request {
+    .modal-link {
+      width: 60vw;
+      margin: 10px auto;
+    }
+  }
+}

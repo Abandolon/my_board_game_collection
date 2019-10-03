@@ -43,3 +43,21 @@
 .back-button {
   position: absolute;
 }
+
+@media (max-width: 991px) {
+  .back-button {
+    display: none;
+  }
+  .page-title h2 {
+    font-size: 19px;
+  }
+
+  .messages-container {
+    width: 95vw;
+    height: 57vh;
+  }
+
+  .full-width {
+    width: 95vw;
+  }
+}

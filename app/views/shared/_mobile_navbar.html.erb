@@ -1,0 +1,38 @@
+<!-- Navbar for Mobile -->
+
+<div class="mobile-nav navbar-light">
+  <div class="mobile-link-item">
+    <%= link_to root_path do %>
+      <%= image_tag("logo-1.svg") %>
+      <p>Home</p>
+    <% end %>
+  </div>
+  <% if current_user.present? && current_user.profile.present? %>
+    <div class="mobile-link-item">
+    <%= link_to conversations_path do  %>
+      <i class="far fa-envelope"></i>
+      <p>Messages</p>
+    <% end %>
+    </div>
+
+    <div class="mobile-link-item">
+      <%= link_to profile_path(current_user.profile) do %>
+        <i class="far fa-dice-d20"></i>
+        <p>My Games</p>
+      <% end %>
+    </div>
+    <div class="mobile-link-item">
+      <%= link_to destroy_user_session_path, method: :delete do  %>
+        <i class="fas fa-sign-out"></i>
+        <p>Sign Out</p>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="mobile-link-item">
+      <%= link_to new_user_session_path do %>
+      <i class="fas fa-sign-in"></i>
+      <p>Sign In</p>
+      <% end %>
+    </div>
+  <% end %>
+</div>
