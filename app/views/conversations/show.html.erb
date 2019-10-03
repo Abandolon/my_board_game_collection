@@ -1,16 +1,28 @@
-<h1><%= @conversation.subject %></h1>
-
-<% @conversation.receipts_for(current_user).each do |receipt| %>
-  <div>
-    <%= receipt.message.sender.profile.username %> commented:
-    <p><%= receipt.message.body %></p>
+<div class="page-header">
+  <p class="btn btn-info back-button ml-3 mt-3"><%= link_to "Back", conversations_path  %></p>
+  <div class="page-title text-center bg-header">
+    <h2><%= @conversation.subject %></h2>
   </div>
+</div>
+<div class="messages-container">
+  <% @conversation.receipts_for(current_user).each do |receipt| %>
+    <% if receipt.message.sender == current_user %>
+      <div class="user-message text-right">
+        <%= receipt.message.sender.profile.username %>:<br>
+        <%= receipt.message.body %>
+      </div>
+    <% else %>
+      <div class="participant-message text-left">
+        <%= receipt.message.sender.profile.username %>:
+        <p class="message-body"><%= receipt.message.body %></p>
+      </div>
+    <% end %>
   <% end %>
-
-<%= form_tag conversation_messages_path(@conversation), method: :post do %>
-<div>
-  <%= text_area_tag :body %>
 </div>
 
-<%= submit_tag %>
+<%= form_tag conversation_messages_path(@conversation), method: :post do %>
+  <div class="full-width">
+    <%= text_area_tag :body, nil, class: "md-textarea form-control" %>
+  <%= submit_tag "Reply", class: "btn btn-primary btn-rounded mt-2" %>
+  </div>
 <% end %>

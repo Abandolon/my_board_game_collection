@@ -8,7 +8,7 @@ Mailboxer.setup do |config|
 
   #Configures the methods needed by mailboxer
   config.email_method = :mailboxer_email
-  config.name_method = :username
+  config.name_method = :name
   config.notify_method = :notify
 
   # #Configures Mailboxer to use UserMailer for sending emails

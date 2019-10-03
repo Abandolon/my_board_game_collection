@@ -4,7 +4,7 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <h1>You have a new message: <%= @subject %></h1>
+    <h1>You have a new message from <%= @message.sender.profile.username %></h1>
     <p>
       You have received a new message:
     </p>
@@ -14,7 +14,7 @@
       </p>
     </blockquote>
     <p>
-      Visit <%= link_to root_url, root_url %> and go to your inbox for more info.
+      Visit <%= link_to root_url, root_url %> and go to your messages to reply.
     </p>
   </body>
 </html>

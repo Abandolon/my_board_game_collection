@@ -1,0 +1,45 @@
+.page-title {
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+}
+
+.text-left {
+  text-align: left;
+  margin-left: 1rem;
+  margin-right: auto;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  width: fit-content;
+  border-radius: 5px;
+  border: 1px solid $gray;
+  padding: 3px;
+  background-color: $blue;
+  color: $yellow;
+}
+
+.text-right {
+  text-align: right;
+  margin-right: 1rem;
+  margin-left: auto;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  width: fit-content;
+  border-radius: 5px;
+  border: 1px solid $gray;
+  padding: 3px;
+  background-color: $yellow;
+  color: $blue;
+}
+
+.messages-container {
+  width: 50vw;
+  margin: 1rem auto;
+  overflow-y: scroll;
+  height: 50vh;
+  background-color: $gray;
+  color: white;
+}
+
+.back-button {
+  position: absolute;
+}

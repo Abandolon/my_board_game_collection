@@ -28,19 +28,21 @@
 }
 
 .bg-show {
-  border-radius: 10px;
-  box-shadow: rgb(28, 36, 188) 0px -1px 1px;
+  border-radius: 4px;
+  box-shadow: $purple 0px -1px 2px;
   display: grid;
   height: 250px;
   width: 200px;
   padding: 5px 5px;
   text-decoration: none;
   margin: 15px 10px;
+  background-color: $yellow;
+  font-weight: bold;
 
   a {
     text-decoration: none;
     margin-top: 1rem;
-    color: rgb(28, 36, 188);
+    color: $blue;
   }
 }
 

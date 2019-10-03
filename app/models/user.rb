@@ -16,8 +16,8 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
 
 
-  def username
-    self.profile.username
+  def name
+    self.username
   end
 
   def mailboxer_email(message)

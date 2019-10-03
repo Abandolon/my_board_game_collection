@@ -1,5 +1,5 @@
 class ConversationsController < ApplicationController
-
+  before_action :authenticate_user!
   def index
     @conversations = current_user.mailbox.conversations
   end
@@ -10,7 +10,7 @@ class ConversationsController < ApplicationController
   end
 
   def new
-    @recipients = User.all - [current_user]
+    @recipients = Profile.all - [Profile.find_by(user: current_user)]
   end
 
   def create
