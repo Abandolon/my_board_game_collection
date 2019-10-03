@@ -80,7 +80,7 @@ class BoardgamesController < ApplicationController
   end
 
   def destroy
-    game = Usersboardgame.find_by(boardgame: @boardgame)
+    game = Usersboardgame.find_by(boardgame: @boardgame, user: current_user)
     game.destroy!
     flash[:alert] = "#{@boardgame.name} has been removed"
     redirect_to profile_path(current_user.profile)
