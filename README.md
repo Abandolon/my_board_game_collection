@@ -24,8 +24,9 @@ This app uses an API call to [Board Game Atlas](https://www.boardgameatlas.com/a
 
 # Additional Features Planned
 - [X] Allow for multiple users
-~~- [ ] Create a "Meet-up" feature to connect users in the same city who wish to play~~
+- ~~[ ] Create a "Meet-up" feature to connect users in the same city who wish to play~~
 - [X] Implement A Messaging Feature to connect Users
 - [X] Connect to Amazon Affiliates to facilitate purchse of board games
+- [ ] Allow Users to create a shared "Friends" Boardgame collection
 - [ ] Connect to 3D Model website to offer my service to print board-game related objects
 
