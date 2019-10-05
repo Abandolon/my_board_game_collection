@@ -33,6 +33,39 @@
   text-align: center;
 }
 
+.card-container {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-areas:
+    "cah cah cah cah"
+    "cas caa cab cam";
+}
+
+.card-title i {
+  font-size: 80px;
+  color: darkorange;
+  text-shadow: -1px -2px gray;
+}
+.card-header {
+  grid-area: cah;
+}
+
+.sign {
+  grid-area: cas;
+}
+
+.add {
+  grid-area: caa;
+}
+
+.browse {
+  grid-area: cab;
+}
+
+.msg {
+  grid-area: cam;
+}
+
 @media (max-width: 991px) {
 
   .hero-banner {
@@ -50,5 +83,18 @@
 
   .link {
     margin: 24px 0;
+  }
+
+  .card-container {
+    grid-template-areas:
+    "cah"
+    "cas"
+    "caa"
+    "cab"
+    "cam";
+  }
+
+  .card-title i {
+    font-size: 60px;
   }
 }
