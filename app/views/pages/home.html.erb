@@ -13,13 +13,56 @@
   </div>
   <div class="container">
     <p>Some of the most viewed games: </p>
-      <div class="bg-display row">
-        <% @boardgames.sample(5).each do |bg| %>
-          <div class="bg-show">
-            <%= link_to bg.name, boardgame_path(bg) %>
-            <%= link_to image_tag(bg.thumb_url, class: "boardgame-thumb"), boardgame_path(bg)  %>
-          </div>
-        <% end %>
+    <section class="bg-display">
+      <% @boardgames.sample(5).each do |bg| %>
+        <div class="bg-show">
+          <%= link_to bg.name, boardgame_path(bg) %>
+          <%= link_to image_tag(bg.thumb_url, class: "boardgame-thumb"), boardgame_path(bg)  %>
+        </div>
+      <% end %>
+    </section>
+    <section class="card-container">
+      <h3 class="card-header">How It Works</h3>
+      <div class="card sign">
+        <div class="card-title">
+          <p>Sign Up & Create Profile</p>
+          <i class="fal fa-id-card"></i>
+        </div>
+        <div class="card-detail">
+          <p>Easily sign up with just your email</p>
+          <p>Create your profile and select your username</p>
+        </div>
       </div>
+      <div class="card add">
+        <div class="card-title">
+          <p>Add Your Boardgames</p>
+          <i class="fal fa-game-board"></i>
+        </div>
+        <div class="card-detail">
+          <p>Simply search for your game and click "add"</p>
+          <p>Once your library is complete, share your collection</p>
+        </div>
+      </div>
+      <div class="card browse">
+        <div class="card-title">
+          <p>Browse Game Library</p>
+          <i class="far fa-search"></i>
+        </div>
+        <div class="card-detail">
+          <p>Browse through all games</p>
+          <p>Once you see a game, contact an owner</p>
+        </div>
+      </div>
+      <div class="card msg">
+        <div class="card-title">
+          <p>Send a Message & Start Playing</p>
+          <i class="fad fa-comments-alt"></i>
+        </div>
+        <div class="card-detail">
+          <p>Quickly send a message</p>
+          <p>Await email notification of reply</p>
+        </div>
+      </div>
+    </section>
   </div>
 </div>
