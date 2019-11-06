@@ -2,6 +2,30 @@
 <% content_for :meta_description, "Check out #{@profile.username}'s boardgame collection" %>
 
 <div class="container">
+  <section class="user-badge">
+    <div class="user-avatar">
+      <%= cl_image_tag @profile.image, {class: "avatar-large"} %>
+    </div>
+    <div class="user-details">
+      <p><%= @profile.city %></p>
+      <p><%= @profile.country %></p>
+    </div>
+    <div class="user-bio">
+      <p>What Type of gamer am I?</p>
+      <p> <%= @profile.bio %></p>
+    </div>
+    <div class="user-message">
+      <%= form_tag conversations_path, method: :post do %>
+        Send To: <%= text_field_tag :user, @profile.username, disabled: true %>
+        <input type="hidden" id="user" name="user_id" value="<%= @profile.user.id %>">
+        <%= text_field_tag :subject, nil, value: "Subject: ", class: "form-control validate" %>
+        <%= text_area_tag :body, nil, placeholder: "Let them know when you'd like to play",
+          class: "md-textarea form-control" %>
+        <input type="hidden" id="user_id" name="user" value="">
+        <button class="btn btn-unique">Send <i class="fas fa-paper-plane ml-1"></i></button>
+      <% end %>
+    </div>
+  </section>
   <% if current_user == @profile.user %>
     <%= render 'shared/bgsearch' %>
     <p><strong>Your Current Boardgames</strong></p>
