@@ -6,15 +6,19 @@
   grid-template-areas:
     "usa usb usm"
     "usd usb usm";
-
+  background-color: $yellow;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .user-avatar {
   grid-area: usa;
+  text-align: center;
 }
 
 .user-details {
   grid-area: usd;
+  text-align: center;
 }
 
 .user-bio {
