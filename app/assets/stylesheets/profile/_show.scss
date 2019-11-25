@@ -1,0 +1,30 @@
+.user-badge {
+  display: grid;
+  width: 100%;
+  grid-gap: 15px;
+  grid-template-columns: max-content;
+  grid-template-areas:
+    "usa usb usm"
+    "usd usb usm";
+  background-color: $yellow;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.user-avatar {
+  grid-area: usa;
+  text-align: center;
+}
+
+.user-details {
+  grid-area: usd;
+  text-align: center;
+}
+
+.user-bio {
+  grid-area: usb;
+}
+
+.user-message {
+  grid-area: usm;
+}
