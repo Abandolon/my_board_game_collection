@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'csv'
 require_relative 'mechanics_master.rb'
 require_relative 'categories_master.rb'
 
@@ -46,3 +47,9 @@ puts "Creating Categories"
 end
 
 puts "Completed. Successfully created #{Category.count} categories"
+
+puts "Creating Avatars"
+
+CSV.foreach("mob_filenames.csv") do |row|
+  Avatar.create(image: row)
+end
