@@ -30,3 +30,5 @@ This app uses an API call to [Board Game Atlas](https://www.boardgameatlas.com/a
 - [ ] Allow Users to create a shared "Friends" Boardgame collection
 - [ ] Connect to 3D Model website to offer my service to print board-game related objects
 
+# To Do
+- [ ] update BoardGameAtalas Api connection (switch from AuthToken to ClientID system
