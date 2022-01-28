@@ -27,11 +27,7 @@
 #   'true': 'foo'
 #
 # To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
+# available at https://guides.rubyonrails.org/i18n.html.
 
 en:
   hello: "Hello world"
-  mailboxer:
-      message_mailer:
-        subject_new: "New Message at Let's Play Tabletop Games"
-        subject_reply: "%{subject} has a new reply"
