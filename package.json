@@ -2,12 +2,14 @@
   "name": "my_board_game_collection",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^4.2.0",
+    "@rails/webpacker": "5.4.3",
     "bootstrap": "^4.3.1",
     "jquery": "^3.5.0",
-    "popper.js": "^1.15.0"
+    "popper.js": "^1.15.0",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12"
   },
   "devDependencies": {
-    "webpack-dev-server": "^3.9.0"
+    "webpack-dev-server": "^3"
   }
 }
