@@ -89,7 +89,6 @@ class BoardgamesController < ApplicationController
     redirect_to profile_path(current_user.profile)
   end
 
-
   private
 
   def set_boardgame
@@ -115,13 +114,13 @@ class BoardgamesController < ApplicationController
   end
 
   def parse_result(boardgame_name)
-    url = "https://www.boardgameatlas.com/api/search?name=#{boardgame_name}&limit=30&fields=name,year_published,min_players,max_players,min_playtime,max_playtime,min_age,description,image_url,thumb_url,url,id,mechanics,categories&pretty=true&client_id=p4PR6A8SOV"
+    url = base_url + "search?name=#{boardgame_name}&limit=30&fields=name,year_published,min_players,max_players,min_playtime,max_playtime,min_age,description,image_url,thumb_url,url,id,mechanics,categories&pretty=true&client_id=p4PR6A8SOV"
     url_result = open(url).read
     @boardgames_hash = JSON.parse(url_result)
   end
 
   def link_images(boardgame)
-    url = %"https://www.boardgameatlas.com/api/game/images?game_id=#{boardgame.bga_id}&pretty=true&limit=20&client_id=p4PR6A8SOV"
+    url = base_url + "game/images?game_id=#{boardgame.bga_id}&pretty=true&limit=20&client_id=p4PR6A8SOV"
     url_result = open(url).read
     images_hash = JSON.parse(url_result)
     unless images_hash["images"].blank?
@@ -140,9 +139,8 @@ class BoardgamesController < ApplicationController
     end
   end
 
-
   def link_video(boardgame)
-    url = "https://www.boardgameatlas.com/api/game/videos?game_id=#{boardgame.bga_id}&pretty=true&limit=20&client_id=p4PR6A8SOV"
+    url = base_url + "game/videos?game_id=#{boardgame.bga_id}&pretty=true&limit=20&client_id=p4PR6A8SOV"
     url_result = open(url).read
     videos_hash = JSON.parse(url_result)
     videos_hash["videos"].each do |video|
@@ -163,5 +161,9 @@ class BoardgamesController < ApplicationController
                                       :max_players, :min_playtime, :max_playtime,
                                       :min_age, :description, :img_url,
                                       :thumb_url, :url)
+  end
+
+  def base_url
+    'https://api.boardgameatlas.com/api/'
   end
 end
