@@ -3,9 +3,11 @@
 
 <div class="container">
   <section class="user-badge">
-    <div class="user-avatar">
-      <%= cl_image_tag @profile.image, {class: "avatar-large"} %>
-    </div>
+    <% if @profile.image.present? %>
+      <div class="user-avatar">
+        <%= cl_image_tag @profile.image, {class: "avatar-large"} %>
+      </div>
+    <% end %>
     <div class="user-details">
       <p><%= @profile.city %></p>
       <p><%= @profile.country %></p>
